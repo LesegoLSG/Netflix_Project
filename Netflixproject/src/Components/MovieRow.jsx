@@ -19,6 +19,8 @@ const MovieRow = ({ title, url }) => {
     slider.scrollLeft = slider.scrollLeft + offset;
   };
 
+  console.log(movies);
+
   return (
     <>
       {/* Title of the movie row */}
