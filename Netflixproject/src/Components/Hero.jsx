@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import endpoints, { createImageUrl } from "../Services/movieServices";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   // State to store the movie data
   const [movie, setMovie] = useState({});
 
@@ -33,7 +35,7 @@ const Hero = () => {
   }
 
   // Destructure the movie object to extract needed properties
-  const { title, backdrop_path, release_date, overview } = movie;
+  const { id, title, backdrop_path, release_date, overview } = movie;
 
   return (
     <div className="w-full h-[550px] lg:h-[850px]">
@@ -50,7 +52,10 @@ const Hero = () => {
           <h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
           <div className="mt-8 mb-4">
             {/* Play button */}
-            <button className="capitalise border border-gray-300 py-2 px-5">
+            <button
+              className="capitalise border border-gray-300 py-2 px-5"
+              onClick={() => navigate(`/trailer/${id}`)}
+            >
               Play
             </button>
             {/* Watch Later button */}
