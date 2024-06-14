@@ -16,6 +16,8 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
+      console.log("email:", email);
+      console.log("Password:", password);
       await signUp(email, password);
       navigate("/");
     } catch (error) {
@@ -34,7 +36,7 @@ const SignUp = () => {
 
       <div className="fixed w-full px-4 py-4 z-20">
         <div className="max-w-[450px] h-[600px] mx-auto bg-black/80 rounded-lg">
-          <div className="max-w-[320px] mx-auto py-16">
+          <div className="max-w-[320px] mx-auto py-20">
             <h1 className="text-3xl font-nsans-bold">Sign UP</h1>
             {/* Signup form */}
             <form
