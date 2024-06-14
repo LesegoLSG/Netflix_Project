@@ -15,6 +15,8 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      console.log("email login:", email);
+      console.log("Password login:", password);
       await logIn(email, password);
       navigate("/");
     } catch (error) {
@@ -34,7 +36,7 @@ const Login = () => {
       {/* Login form container */}
       <div className="fixed w-full px-4 py-4 z-20">
         <div className="max-w-[450px] h-[600px] mx-auto bg-black/80 rounded-lg">
-          <div className="max-w-[320px] mx-auto py-16">
+          <div className="max-w-[320px] mx-auto py-20">
             <h1 className="text-3xl font-nsans-bold">Login</h1>
 
             <form
@@ -82,7 +84,7 @@ const Login = () => {
               {/* Link to signup page */}
               <p className="my-4">
                 <span className="text-gray-600 mr-2 ">New to Netflix?</span>
-                <Link to="/signup">Sign In</Link>
+                <Link to="/signup">Sign up now</Link>
               </p>
             </form>
           </div>
