@@ -4,8 +4,11 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../Services/firebase";
 import { UserAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { MdOutlinePlayCircleOutline } from "react-icons/md";
 
 const MovieItem = ({ movie }) => {
+  const navigate = useNavigate();
   const { title, backdrop_path, poster_path } = movie; // Destructure necessary properties from the movie object
   const [like, setLike] = useState(false); // State to track if the movie is liked
   const { user } = UserAuth(); // Access user authentication context
@@ -27,7 +30,7 @@ const MovieItem = ({ movie }) => {
   };
 
   return (
-    <div className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2">
+    <div className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg overflow-hidden  m-2">
       {/* Movie image */}
       <img
         className="w-full h-40 block object-cover object-top"
@@ -36,9 +39,15 @@ const MovieItem = ({ movie }) => {
       />
       {/* Overlay with movie title and like button */}
       <div className="absolute top-0 left-0 w-full h-40 bg-black/80 opacity-0 hover:opacity-100">
-        <p className="whitespace-normal text-xs md:text-sm flex justify-center items-center h-full font-nsans-bold">
+        <p className="whitespace-normal text-xs md:text-sm flex flex-col justify-center items-center h-full font-nsans-bold">
           {movie.title}
+          <MdOutlinePlayCircleOutline
+            size={30}
+            onClick={() => navigate(`/trailer/${movie.id}`)}
+            className="cursor-pointer"
+          />
         </p>
+
         {/* Like button */}
         <p onClick={markFavShow} className="cursor-pointer">
           {like ? (
