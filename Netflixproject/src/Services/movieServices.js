@@ -3,11 +3,14 @@ const baseUrl = "https://api.themoviedb.org/3";// Base URL for TMDb API
 
 // Object containing various endpoints for TMDb API
 const endpoints = {
+    key,
+    baseUrl,
     popular:`${baseUrl}/movie/popular?api_key=${key}`,
     topRated:`${baseUrl}/movie/top_rated?api_key=${key}`,
     trending:`${baseUrl}/movie/popular?api_key=${key}&language=en-US&page=2`,
     comedy:`${baseUrl}/movie/popular?api_key=${key}&language=US&query=comedy&page=1&include_adult=false`,
     upcoming:`${baseUrl}/movie/upcoming?api_key=${key}`,
+    similar: (movieId) => `${baseUrl}/movie/${movieId}/similar?api_key=${key}`, // similar movies endpoint
 }
 // Function to create image URLs using the TMDb image base URL and size
 export function createImageUrl(filename,size){
