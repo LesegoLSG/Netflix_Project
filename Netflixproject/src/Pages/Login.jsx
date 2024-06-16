@@ -64,7 +64,7 @@ const Login = () => {
               {/* Login button */}
               <button
                 type="submit"
-                className="bg-red-600 py-3 my-6 rounded font-nsans-bold"
+                className="bg-primary py-3 my-6 rounded font-nsans-bold"
               >
                 Login
               </button>
@@ -83,7 +83,7 @@ const Login = () => {
               </div>
               {/* Link to signup page */}
               <p className="my-4">
-                <span className="text-gray-600 mr-2 ">New to Netflix?</span>
+                <span className="text-gray-600 mr-2 ">New to EgoStream?</span>
                 <Link to="/signup">Sign up now</Link>
               </p>
             </form>
