@@ -6,6 +6,9 @@ import { db } from "../Services/firebase";
 import { UserAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { MdOutlinePlayCircleOutline } from "react-icons/md";
+// Toastify Library imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MovieItem = ({ movie }) => {
   const navigate = useNavigate();
@@ -24,8 +27,14 @@ const MovieItem = ({ movie }) => {
       await updateDoc(userDoc, {
         favShows: arrayUnion({ ...movie }),
       });
+      toast.success(
+        <div>
+          <h1 className="text-primary m-2 font-nsans-bold text-2xl">LessEgo</h1>
+          Movie saved to your profile
+        </div>
+      );
     } else {
-      alert("Login to save this movie");
+      navigate("/login");
     }
   };
 
@@ -49,16 +58,13 @@ const MovieItem = ({ movie }) => {
         </p>
 
         {/* Like button */}
-        <p onClick={markFavShow} className="cursor-pointer">
+        <p onClick={markFavShow} className="cursor-pointer ">
           {like ? (
-            <FaHeart
-              size={20}
-              className="absolute top-2 left-2 text-gray-300"
-            />
+            <FaHeart size={20} className="absolute top-2 left-2 text-primary" />
           ) : (
             <FaRegHeart
               size={20}
-              className="absolute top-2 left-2 text-gray-300"
+              className="absolute top-2 left-2 text-primary"
             />
           )}
         </p>
