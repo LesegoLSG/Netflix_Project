@@ -11,6 +11,7 @@ const endpoints = {
     comedy:`${baseUrl}/movie/popular?api_key=${key}&language=US&query=comedy&page=1&include_adult=false`,
     upcoming:`${baseUrl}/movie/upcoming?api_key=${key}`,
     similar: (movieId) => `${baseUrl}/movie/${movieId}/similar?api_key=${key}`, // similar movies endpoint
+
 }
 // Function to create image URLs using the TMDb image base URL and size
 export function createImageUrl(filename,size){
