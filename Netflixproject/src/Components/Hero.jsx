@@ -1,12 +1,44 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import endpoints, { createImageUrl } from "../Services/movieServices";
+
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../Services/firebase";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../Context/AuthContext";
+import { MdOutlinePlayCircleOutline } from "react-icons/md";
+// Toastify Library imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Hero = () => {
   const navigate = useNavigate();
   // State to store the movie data
   const [movie, setMovie] = useState({});
+  const [like, setLike] = useState(false); // State to track if the movie is liked
+  const { user } = UserAuth(); // Access user authentication context
+
+  // Function to mark or unmark the movie as favorite
+  const markFavShow = async () => {
+    const userEmail = user?.email;
+
+    if (userEmail) {
+      const userDoc = doc(db, "users", userEmail); // Reference to the user's document in Firestore
+      setLike(!like);
+      // Update the user's favorite shows in Firestore
+      await updateDoc(userDoc, {
+        favShows: arrayUnion({ ...movie }),
+      });
+      toast.success(
+        <div>
+          <h1 className="text-primary m-2 font-nsans-bold text-2xl">LessEgo</h1>
+          Movie saved to your profile
+        </div>
+      );
+    } else {
+      navigate("/login");
+    }
+  };
 
   // Fetch movie data when the component mounts
   useEffect(() => {
@@ -39,6 +71,7 @@ const Hero = () => {
 
   return (
     <div className="w-full h-[550px] lg:h-[850px]">
+      <ToastContainer />
       <div className="w-full h-full">
         {/* Background overlay */}
         <div className="absolute w-full h-[550px] lg:h-[850px] bg-gradient-to-r from-black" />
@@ -48,18 +81,22 @@ const Hero = () => {
           alt="title"
         />
         {/* Movie details section */}
-        <div className="absolute w-full top-[10%] lg:top-[25%] p-4 md:p-8">
+        <div className="absolute w-full top-[20%] lg:top-[25%] p-4 md:p-8">
           <h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
-          <div className="mt-8 mb-4">
+          <div className="mt-8 mb-4 flex justify-startS items-center">
             {/* Play button */}
             <button
-              className="capitalise border border-gray-300 py-2 px-5"
+              className="capitalise border border-primary py-2 px-5 flex flex-row items-center gap-x-1"
               onClick={() => navigate(`/trailer/${id}`)}
             >
+              <MdOutlinePlayCircleOutline />
               Play
             </button>
             {/* Watch Later button */}
-            <button className="capitalise border border-gray-300 py-2 px-5 ml-4">
+            <button
+              className="capitalise border border-primary py-2 px-5 ml-4"
+              onClick={() => markFavShow()}
+            >
               Watch Later
             </button>
           </div>
