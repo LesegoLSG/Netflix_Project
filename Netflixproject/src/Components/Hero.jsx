@@ -86,7 +86,7 @@ const Hero = () => {
           <div className="mt-8 mb-4 flex justify-startS items-center">
             {/* Play button */}
             <button
-              className="capitalise border border-primary py-2 px-5 flex flex-row items-center gap-x-1"
+              className="capitalise border border-primary py-2 px-5 flex flex-row items-center gap-x-1 hover:bg-primary hover:border-gray-300"
               onClick={() => navigate(`/trailer/${id}`)}
             >
               <MdOutlinePlayCircleOutline />
@@ -94,7 +94,7 @@ const Hero = () => {
             </button>
             {/* Watch Later button */}
             <button
-              className="capitalise border border-primary py-2 px-5 ml-4"
+              className="capitalise border border-primary py-2 px-5 ml-4 hover:bg-primary hover:border-gray-300"
               onClick={() => markFavShow()}
             >
               Watch Later
