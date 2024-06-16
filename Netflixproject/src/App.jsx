@@ -8,6 +8,7 @@ import Profile from "./Pages/Profile";
 import { AuthContextProvider } from "./Context/AuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Trailer from "./Pages/Trailer";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           />
           <Route path="/trailer/:id" element={<Trailer />} />
         </Routes>
+        <Footer />
       </AuthContextProvider>
     </>
   );
