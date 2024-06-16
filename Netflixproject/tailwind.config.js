@@ -10,6 +10,9 @@ export default {
         'nsans-light':['Nsans Light'],
         'nsans-medium':['Nsans Medium'],
         'nsans-bold':['Nsans Bold'],
+      },
+      colors:{
+        primary:"#4287f5",
       }
     },
   },
