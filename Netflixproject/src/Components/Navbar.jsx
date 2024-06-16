@@ -18,11 +18,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 z-50 w-full absolute">
+    <div className="flex justify-between items-center p-4 z-50 w-full absolute md:px-16">
       {/* Logo linking to homepage */}
       <Link to="/">
-        <h1 className="uppercase text-red-600 text-4xl font-bold cursor-pointer ">
-          netflix
+        <h1 className=" text-primary text-2xl md:text-4xl font-bold cursor-pointer ">
+          EgoStream
         </h1>
       </Link>
 
@@ -35,7 +35,7 @@ const Navbar = () => {
           {/* Logout button */}
           <button
             onClick={handleLogout}
-            className="capitalize bg-red-600 px-6 py-2 rounded cursor-pointer text-white"
+            className="capitalize bg-primary px-6 py-2 rounded cursor-pointer text-white"
           >
             Logout
           </button>
@@ -48,7 +48,7 @@ const Navbar = () => {
           </Link>
           {/* Sign Up button */}
           <Link to="/signup">
-            <button className="capitalize bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
+            <button className="capitalize bg-primary px-6 py-2 rounded cursor-pointer text-white">
               Sign Up
             </button>
           </Link>
