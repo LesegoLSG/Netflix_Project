@@ -74,7 +74,7 @@ npm run dev
 
 ## Live demo
 ```
-Link to live demo: https://netflixproject-b30bf.web.app/
+https://netflixproject-b30bf.web.app/
 ```
 # Technologies Used
 1. Html & classes
